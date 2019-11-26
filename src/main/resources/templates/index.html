@@ -34,11 +34,22 @@
     <br>
     <br>
     <div class="container">
-        <h2>User Registration and Login Module using Spring Boot, Spring MVC, Spring Security, JPA/Hibernate and Thymeleaf</h2>
-
-        <p>
+        <h2>
             Welcome <span sec:authentication="principal.username">User</span>
+        </h2>
+        <p>
+        <b>Voted Committees</b>
         </p>
+        <table class="table table-bordered table-striped">
+	      <tr>
+	        <th>Name</th>
+	        <th>Committee</th>
+	      </tr>
+	      <tr th:each="usCt : ${committeesVoted}">
+	        <td th:text="${usCt.assignedUser.firstName}" />
+	        <td th:text="${usCt.assignedCommittee.name}" />
+	      </tr>
+	    </table>
     </div>
 
     <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

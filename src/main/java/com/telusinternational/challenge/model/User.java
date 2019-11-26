@@ -2,13 +2,14 @@ package com.telusinternational.challenge.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "us_email"))
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "us_id")
     private Long id;
     
@@ -36,6 +37,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name="us_co_id", nullable=false)
     private Country country;
+    
+    @OneToMany(mappedBy="assignedUser")
+    private List <UserCommittee> userCommittees;
     
     public User() {}
 
@@ -110,7 +114,16 @@ public class User {
 		this.country = country;
 	}
 	
-    @Override
+	
+    public List<UserCommittee> getUserCommittees() {
+		return userCommittees;
+	}
+
+	public void setUserCommittees(List<UserCommittee> userCommittees) {
+		this.userCommittees = userCommittees;
+	}
+
+	@Override
     public String toString() {
         return "User{" +
             "id=" + id +

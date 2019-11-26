@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Country {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "co_id")
     private Integer id;
     
@@ -23,6 +23,9 @@ public class Country {
 
     @OneToMany(mappedBy="country")
     private List <User> users;
+    
+    @OneToMany(mappedBy="country")
+    private List <Committee> committees;
 
 	public Integer getId() {
 		return id;
@@ -46,6 +49,14 @@ public class Country {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public List<Committee> getCommittees() {
+		return committees;
+	}
+
+	public void setCommittees(List<Committee> committees) {
+		this.committees = committees;
 	}
 	
 	

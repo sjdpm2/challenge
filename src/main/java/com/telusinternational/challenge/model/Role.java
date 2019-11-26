@@ -9,8 +9,8 @@ import javax.persistence.Id;
 @Entity
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ro_id")
     private Long id;
     
