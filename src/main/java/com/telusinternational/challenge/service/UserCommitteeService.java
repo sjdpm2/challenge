@@ -15,5 +15,5 @@ public interface UserCommitteeService {
 	
 	Boolean vote(Integer caId);
 	
-	Boolean committeAvailableforUser(Integer id, Integer type);
+	Boolean validateAvailabilityforUser(Integer id, Integer type);
 }

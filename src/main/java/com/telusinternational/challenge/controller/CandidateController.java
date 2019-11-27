@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.telusinternational.challenge.constants.Consts;
 import com.telusinternational.challenge.service.CandidateService;
 import com.telusinternational.challenge.service.CommitteeService;
 import com.telusinternational.challenge.service.UserCommitteeService;
@@ -24,7 +25,7 @@ public class CandidateController {
 	
 	@GetMapping("/{ctId}")
     public String candidate(@PathVariable Integer ctId, Model model) {
-		if(usCtService.committeAvailableforUser(ctId, 1))
+		if(usCtService.validateAvailabilityforUser(ctId, Consts.BY_COMMITTEE_ID))
 		{
 			model.addAttribute("candidates", caService.findAllByCommittee(ctId));
 			model.addAttribute("committee", ctService.findById(ctId));

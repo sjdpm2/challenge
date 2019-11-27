@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.telusinternational.challenge.constants.Consts;
 import com.telusinternational.challenge.model.Candidate;
 import com.telusinternational.challenge.model.Committee;
 import com.telusinternational.challenge.model.User;
@@ -61,27 +62,32 @@ public class UserCommitteeServiceImpl implements UserCommitteeService{
 	}
 
 	@Override
-	public Boolean committeAvailableforUser(Integer id, Integer type) {
+	public Boolean validateAvailabilityforUser(Integer id, Integer type) {
 		User loggedUser = usService.getLoggedUser();
 		Committee committee = null;
-		if(type == 1)
+		if(type == Consts.BY_COMMITTEE_ID)
 		{
 			Optional<Committee> committeeTemp = ctRep.findById(id);
 			committee = committeeTemp.get();
 		
 		}
-		else if(type == 2)
+		else if(type == Consts.BY_CANDIDATE_ID)
 		{
 			Optional<Candidate> candidate = caRep.findById(id);
 			committee = candidate.get().getCommittee();
 		}
 		if(committee != null)
 		{
-			if(usCtRep.findByAssignedUserAndAssignedCommittee(loggedUser, committee) != null)
+			//validating if the user have the same country of the committee
+			if(loggedUser.getCountry().getId() == committee.getCountry().getId())
 			{
-				return false;
+				//validating if the user has already voted for a committee
+				if(usCtRep.findByAssignedUserAndAssignedCommittee(loggedUser, committee) != null)
+				{
+					return false;
+				}
+				return true;
 			}
-			return true;
 		}
 		return false;
 	}
