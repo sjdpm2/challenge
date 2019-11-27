@@ -34,4 +34,9 @@ public class MainController {
     public String userIndex() {
         return "user/index";
     }
+    
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 }

@@ -23,7 +23,7 @@ public class UserCommitteeServiceImpl implements UserCommitteeService{
 	@Autowired
 	private UserCommitteeRepository usCtRep;
 	@Autowired
-	private CommitteeRepository comRep;
+	private CommitteeRepository ctRep;
 	@Autowired
 	private CandidateRepository caRep;
 	@Autowired
@@ -36,7 +36,7 @@ public class UserCommitteeServiceImpl implements UserCommitteeService{
 
 	@Override
 	public List<Committee> findAllByUserCountryAndNotVoted(Long userId, Integer countryId) {
-		return comRep.findAllByUserCountryAndNotVoted(userId, countryId);
+		return ctRep.findAllByUserCountryAndNotVoted(userId, countryId);
 	}
 
 	@Override
@@ -58,6 +58,32 @@ public class UserCommitteeServiceImpl implements UserCommitteeService{
 		caRep.save(candidate.get());
 		
 		return true;
+	}
+
+	@Override
+	public Boolean committeAvailableforUser(Integer id, Integer type) {
+		User loggedUser = usService.getLoggedUser();
+		Committee committee = null;
+		if(type == 1)
+		{
+			Optional<Committee> committeeTemp = ctRep.findById(id);
+			committee = committeeTemp.get();
+		
+		}
+		else if(type == 2)
+		{
+			Optional<Candidate> candidate = caRep.findById(id);
+			committee = candidate.get().getCommittee();
+		}
+		if(committee != null)
+		{
+			if(usCtRep.findByAssignedUserAndAssignedCommittee(loggedUser, committee) != null)
+			{
+				return false;
+			}
+			return true;
+		}
+		return false;
 	}
 
 }

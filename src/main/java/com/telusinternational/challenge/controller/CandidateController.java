@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.telusinternational.challenge.service.CandidateService;
 import com.telusinternational.challenge.service.CommitteeService;
+import com.telusinternational.challenge.service.UserCommitteeService;
 
 @Controller
 @RequestMapping("/candidate")
@@ -18,11 +19,20 @@ public class CandidateController {
 	private CandidateService caService;
 	@Autowired
 	private CommitteeService ctService;
+	@Autowired
+	private UserCommitteeService usCtService;
 	
 	@GetMapping("/{ctId}")
     public String candidate(@PathVariable Integer ctId, Model model) {
-		model.addAttribute("candidates", caService.findAllByCommittee(ctId));
-		model.addAttribute("committee", ctService.findById(ctId));
-        return "candidates";
+		if(usCtService.committeAvailableforUser(ctId, 1))
+		{
+			model.addAttribute("candidates", caService.findAllByCommittee(ctId));
+			model.addAttribute("committee", ctService.findById(ctId));
+	        return "candidates";
+		}
+		else
+		{
+			return "redirect:/error";
+		}
     }
 }

@@ -16,7 +16,14 @@ private UserCommitteeService usCtService;
 	
 	@GetMapping("/{caId}")
     public String candidate(@PathVariable Integer caId) {
-		usCtService.vote(caId);
-		return "redirect:/";
+		if(usCtService.committeAvailableforUser(caId, 2))
+		{
+			usCtService.vote(caId);
+			return "redirect:/";
+		}
+		else
+		{
+			return "redirect:/error";
+		}
     }
 }

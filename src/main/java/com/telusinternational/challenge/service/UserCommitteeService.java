@@ -14,4 +14,6 @@ public interface UserCommitteeService {
 	List<Committee> findAllByUserCountryAndNotVoted(Long userId, Integer countryId);
 	
 	Boolean vote(Integer caId);
+	
+	Boolean committeAvailableforUser(Integer id, Integer type);
 }

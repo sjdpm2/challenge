@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.telusinternational.challenge.model.Committee;
 import com.telusinternational.challenge.model.User;
 import com.telusinternational.challenge.model.UserCommittee;
 
@@ -13,4 +14,5 @@ public interface UserCommitteeRepository extends JpaRepository <UserCommittee, I
 
 	List<UserCommittee> findByAssignedUser(User user);
 	
+	UserCommittee findByAssignedUserAndAssignedCommittee(User user, Committee committee);
 }

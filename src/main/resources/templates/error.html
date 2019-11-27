@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 
-    <title>Registration</title>
+    <title>Error</title>
 </head>
 
 <body>
@@ -22,11 +22,6 @@
     </button>
                 <a class="navbar-brand" href="#" th:href="@{/}">Voting site</a>
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 
@@ -34,30 +29,9 @@
     <br>
     <div class="container">
         <h2>
-            Welcome <span sec:authentication="principal.username">User</span>
+            The page don't exists or you don't have permissions to see it
         </h2>
-        <p>
-        <b>Voted Committees</b>
-        </p>
-        <table class="table table-bordered table-striped">
-	      <tr>
-	        <th>Committee</th>
-	        <th>Voted at</th>
-	      </tr>
-	      <tr th:each="usCt : ${committeesVoted}">
-	        <td th:text="${usCt.assignedCommittee.name}" />
-	        <td th:text="${usCt.createdAt}" />
-	      </tr>
-	    </table>
-	    <table class="table table-bordered table-striped">
-	      <tr>
-	        <th>Committee</th>
-	      </tr>
-	      <tr th:each="committee : ${committeesPending}">
-	        <td th:text="${committee.name}" />
-	        <td><a class="navbar-brand" href="#" th:href="@{/candidate/} + ${committee.id}">View candidates</a></td>
-	      </tr>
-	    </table>
+        
     </div>
 
     <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
