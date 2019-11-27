@@ -16,10 +16,11 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-     <span class="sr-only">Toggle navigation</span> <span
-      class="icon-bar"></span> <span class="icon-bar"></span> <span
-      class="icon-bar"></span>
-    </button>
+				     <span class="sr-only">Toggle navigation</span> 
+				     <span class="icon-bar"></span> 
+				     <span class="icon-bar"></span> 
+				     <span class="icon-bar"></span>
+			    </button>
                 <a class="navbar-brand" href="#" th:href="@{/}">Voting site</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -27,15 +28,17 @@
                     <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
                 </ul>
             </div>
+            <div style="float: right; color:white;">
+        		Welcome <span sec:authentication="principal.username">User</span>
+        	</div>
         </div>
     </nav>
 
     <br>
     <br>
     <div class="container">
-        <h2>
-            Welcome <span sec:authentication="principal.username">User</span>
-        </h2>
+        <br/>
+        <br/>
         <p>
         <b>Voted Committees</b>
         </p>
@@ -49,9 +52,13 @@
 	        <td th:text="${usCt.createdAt}" />
 	      </tr>
 	    </table>
+	    <p>
+        <b>Committees pending</b>
+        </p>
 	    <table class="table table-bordered table-striped">
 	      <tr>
 	        <th>Committee</th>
+	        <th>Options</th>
 	      </tr>
 	      <tr th:each="committee : ${committeesPending}">
 	        <td th:text="${committee.name}" />
