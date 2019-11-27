@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.telusinternational.challenge.dto.UserRegistrationDto;
+import com.telusinternational.challenge.dto.UserRegistrationDTO;
 import com.telusinternational.challenge.model.Country;
 import com.telusinternational.challenge.model.Role;
 import com.telusinternational.challenge.model.User;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User save(UserRegistrationDto registration) {
+    public User save(UserRegistrationDTO registration) {
         User user = new User();
         Optional<Country> country = countryRepository.findById(registration.getCountryId());
         user.setFirstName(registration.getFirstName());

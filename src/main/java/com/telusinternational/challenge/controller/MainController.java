@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.telusinternational.challenge.model.User;
 import com.telusinternational.challenge.service.UserCommitteeService;
 import com.telusinternational.challenge.service.UserService;
 
@@ -18,7 +19,9 @@ public class MainController {
 	
     @GetMapping("/")
     public String root(Model model) {
-    	model.addAttribute("committeesVoted", usCoService.getCommitteesVotedByUser(userService.getLoggedUser()));
+    	User loggedUser = userService.getLoggedUser();
+    	model.addAttribute("committeesVoted", usCoService.getCommitteesVotedByUser(loggedUser));
+    	model.addAttribute("committeesPending", usCoService.findAllByUserCountryAndNotVoted(loggedUser.getId(), loggedUser.getCountry().getId()));
         return "index";
     }
 

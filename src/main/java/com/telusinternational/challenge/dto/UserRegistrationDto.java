@@ -11,7 +11,7 @@ import com.telusinternational.challenge.constraint.FieldMatch;
     @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
     @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
-public class UserRegistrationDto {
+public class UserRegistrationDTO {
 
     @NotEmpty
     private String firstName;

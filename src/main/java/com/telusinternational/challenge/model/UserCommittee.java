@@ -1,5 +1,7 @@
 package com.telusinternational.challenge.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,9 @@ public class UserCommittee {
 	@ManyToOne
     @JoinColumn(name="uc_us_id", nullable=false)
     private User assignedUser;
+	
+	@Column(name = "uc_date")
+    private Timestamp createdAt;
 
 	public Integer getId() {
 		return id;
@@ -40,6 +45,14 @@ public class UserCommittee {
 
 	public void setAssignedUser(User assignedUser) {
 		this.assignedUser = assignedUser;
+	}
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	

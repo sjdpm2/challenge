@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.telusinternational.challenge.dto.UserRegistrationDto;
+import com.telusinternational.challenge.dto.UserRegistrationDTO;
 import com.telusinternational.challenge.model.User;
 import com.telusinternational.challenge.service.CountryService;
 import com.telusinternational.challenge.service.UserService;
@@ -26,8 +26,8 @@ public class UserRegistrationController {
     private CountryService countryService;
 
     @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    public UserRegistrationDTO userRegistrationDto() {
+        return new UserRegistrationDTO();
     }
 
     @GetMapping
@@ -37,7 +37,7 @@ public class UserRegistrationController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDTO userDto,
         BindingResult result) {
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {

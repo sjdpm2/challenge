@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 
-    <title>Registration</title>
+    <title>Vote</title>
 </head>
 
 <body>
@@ -38,25 +38,16 @@
             Welcome <span sec:authentication="principal.username">User</span>
         </h2>
         <p>
-        <b>Voted Committees</b>
+        <b>Voting for Committee: </b><b th:text="${committee.name}"></b>
         </p>
         <table class="table table-bordered table-striped">
 	      <tr>
-	        <th>Committee</th>
-	        <th>Voted at</th>
+	        <th>Name</th>
+	        <th>Vote</th>
 	      </tr>
-	      <tr th:each="usCt : ${committeesVoted}">
-	        <td th:text="${usCt.assignedCommittee.name}" />
-	        <td th:text="${usCt.createdAt}" />
-	      </tr>
-	    </table>
-	    <table class="table table-bordered table-striped">
-	      <tr>
-	        <th>Committee</th>
-	      </tr>
-	      <tr th:each="committee : ${committeesPending}">
-	        <td th:text="${committee.name}" />
-	        <td><a class="navbar-brand" href="#" th:href="@{/candidate/} + ${committee.id}">View candidates</a></td>
+	      <tr th:each="candidate : ${candidates}">
+	        <td th:text="${candidate.firstName} + ' ' + ${candidate.lastName}" />
+	        <td><a class="navbar-brand" href="#" th:href="@{/vote/} + ${candidate.id}">Choose me!</a></td>
 	      </tr>
 	    </table>
     </div>

@@ -16,8 +16,18 @@ public class Candidate {
     @Column(name = "ca_last_name")
     private String lastName;
     
+    @Column(name = "ca_email")
+    private String email;
+    
+    @Column(name = "ca_id_document")
+    private String idDocument;
+    
     @Column(name = "ca_votes")
     private Integer votes;
+    
+    @ManyToOne
+    @JoinColumn(name="ca_de_id", nullable=false)
+    private Department department;
     
     @ManyToOne
     @JoinColumn(name="ca_ct_id", nullable=false)
@@ -65,6 +75,30 @@ public class Candidate {
 
 	public void setCommittee(Committee committee) {
 		this.committee = committee;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getIdDocument() {
+		return idDocument;
+	}
+
+	public void setIdDocument(String idDocument) {
+		this.idDocument = idDocument;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	
 	
