@@ -21,10 +21,10 @@ public class VisitCounter {
 			DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 			Date dateCurrent = new Date();
 			String dateCurrentS = formatter.format(dateCurrent);
-			FileWriter fw = new FileWriter("CounterVist.txt",true);
+			FileWriter fw = new FileWriter("VisitCounter.txt",true);
 			
 			//Read file to get last line
-			BufferedReader br = new BufferedReader(new FileReader("CounterVist.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("VisitCounter.txt"));
 			String lastLine = "";
 			String sCurrentLine;
 			String newLine;
@@ -36,7 +36,7 @@ public class VisitCounter {
 				lastLine = sCurrentLine;
 			}
 			
-			br = new BufferedReader(new FileReader("CounterVist.txt"));
+			br = new BufferedReader(new FileReader("VisitCounter.txt"));
 			if(br != null)
 			{
 				System.out.println("Hola Mundo");
@@ -77,7 +77,7 @@ public class VisitCounter {
 				fw.write(newLine);	
 			}
 			else {
-				FileWriter fws = new FileWriter("CounterVist.txt");
+				FileWriter fws = new FileWriter("VisitCounter.txt");
 				fws.write(sb.toString());
 				fws.close();
 			}
@@ -91,5 +91,32 @@ public class VisitCounter {
 		}
 		
 	}
+    
+    public String getCounter()
+    {
+    	String counterVisits = "";
+    	
+    	try {
+    		DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+			Date dateCurrent = new Date();
+			String dateCurrentS = formatter.format(dateCurrent);
+			String sCurrentLine;
+			
+    		BufferedReader br = new BufferedReader(new FileReader("VisitCounter.txt"));
+    		
+    		while((sCurrentLine = br.readLine()) != null) {
+    			String[] currentData = sCurrentLine.split("\\|");
+				String currentDate = currentData[0];
+				if(dateCurrentS.equals(currentDate)) {
+					counterVisits = currentData[1];
+				}
+    		}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	return counterVisits;
+    }
     
 }

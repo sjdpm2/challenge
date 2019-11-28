@@ -33,8 +33,8 @@ public class UserRegistrationDTO {
     @NotEmpty
     private String confirmEmail;
 
-    @AssertTrue
-    private Boolean terms;
+    //@AssertTrue
+    //private Boolean terms;
     
     @NotNull
     private Integer countryId;
@@ -87,13 +87,13 @@ public class UserRegistrationDTO {
         this.confirmEmail = confirmEmail;
     }
 
-    public Boolean getTerms() {
-        return terms;
-    }
+    //public Boolean getTerms() {
+    //    return terms;
+    //}
 
-    public void setTerms(Boolean terms) {
-        this.terms = terms;
-    }
+    //public void setTerms(Boolean terms) {
+    //    this.terms = terms;
+    //}
 
 	public Integer getCountryId() {
 		return countryId;

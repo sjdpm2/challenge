@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.telusinternational.challenge.components.VisitCounter;
 import com.telusinternational.challenge.dto.UserRegistrationDTO;
 import com.telusinternational.challenge.model.Country;
 import com.telusinternational.challenge.model.Role;
@@ -29,6 +30,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+	private VisitCounter visitCounter;
+    
     @Autowired
     private CountryRepository countryRepository;
 
@@ -57,6 +62,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
+        visitCounter.countVisit();
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
             user.getPassword(),
             mapRolesToAuthorities(user.getRoles()));

@@ -25,7 +25,7 @@ public class MainController {
     	User loggedUser = userService.getLoggedUser();
     	model.addAttribute("committeesVoted", usCoService.getCommitteesVotedByUser(loggedUser));
     	model.addAttribute("committeesPending", usCoService.findAllByUserCountryAndNotVoted(loggedUser.getId(), loggedUser.getCountry().getId()));
-    	visitCounter.countVisit();
+    	model.addAttribute("visitCounter", visitCounter.getCounter());
         return "index";
     }
 

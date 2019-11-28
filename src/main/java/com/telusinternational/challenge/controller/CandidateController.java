@@ -13,7 +13,7 @@ import com.telusinternational.challenge.service.CommitteeService;
 import com.telusinternational.challenge.service.UserCommitteeService;
 
 @Controller
-@RequestMapping("/candidate")
+@RequestMapping("/candidates")
 public class CandidateController {
 	
 	@Autowired
