@@ -26,6 +26,8 @@ Derivelables:
 	2.- The WS is available in the URL "http://localhost:8080/api/report/candidates" and provide a Json
 	3.- Apache camel if configured to sent a file with the WS data in the previous item, so if the application runs in a different port is necessary to update the URL on the file "AttachmentProcessor.java" in the package "com.telusinternational.challenge.integration"
 	4.- If you want to change the time of the execution you can edit the cron in the line "from("quartz2://simpleTimer?cron=0+0+10+%3F+*+*")" in the file "AdminReport.java" from the package "com.telusinternational.challenge.integration"
+	5.- The counter of visits is saved on the file "VisitCounter.txt" into "challenge" folder
+	6.- The ER Diagram is into "challenge" folder and is available on png and mwb format
 
 Description:
 	The application allows you to register a new user and select a country, after the registration process you can login with the correct credentials and you will be able to see the available committees and the committees already voted.

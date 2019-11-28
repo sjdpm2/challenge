@@ -13,16 +13,16 @@
 
 
 -- Volcando estructura de base de datos para challenge_database
-CREATE DATABASE IF NOT EXISTS `challenge_database` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `challenge_database` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `challenge_database`;
 
 -- Volcando estructura para tabla challenge_database.candidate
 CREATE TABLE IF NOT EXISTS `candidate` (
   `ca_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ca_first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ca_last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ca_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ca_id_document` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ca_first_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ca_last_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ca_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ca_id_document` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `ca_ct_id` bigint(20) NOT NULL,
   `ca_de_id` bigint(20) DEFAULT NULL,
   `ca_votes` bigint(20) NOT NULL DEFAULT '0',
@@ -60,7 +60,7 @@ INSERT INTO `candidate` (`ca_id`, `ca_first_name`, `ca_last_name`, `ca_email`, `
 -- Volcando estructura para tabla challenge_database.committee
 CREATE TABLE IF NOT EXISTS `committee` (
   `ct_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ct_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ct_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `ct_co_id` bigint(20) NOT NULL,
   PRIMARY KEY (`ct_id`),
   KEY `ct_co_id_fk` (`ct_co_id`),
@@ -85,7 +85,7 @@ INSERT INTO `committee` (`ct_id`, `ct_name`, `ct_co_id`) VALUES
 -- Volcando estructura para tabla challenge_database.country
 CREATE TABLE IF NOT EXISTS `country` (
   `co_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `co_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `co_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`co_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -101,7 +101,7 @@ INSERT INTO `country` (`co_id`, `co_name`) VALUES
 -- Volcando estructura para tabla challenge_database.department
 CREATE TABLE IF NOT EXISTS `department` (
   `de_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `de_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `de_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`de_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
@@ -123,7 +123,7 @@ INSERT INTO `department` (`de_id`, `de_name`) VALUES
 -- Volcando estructura para tabla challenge_database.role
 CREATE TABLE IF NOT EXISTS `role` (
   `ro_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ro_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ro_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`ro_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
@@ -138,10 +138,10 @@ INSERT INTO `role` (`ro_id`, `ro_name`) VALUES
 -- Volcando estructura para tabla challenge_database.user
 CREATE TABLE IF NOT EXISTS `user` (
   `us_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `us_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `us_first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `us_last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `us_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `us_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `us_first_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `us_last_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `us_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `us_co_id` bigint(20) NOT NULL,
   PRIMARY KEY (`us_id`),
   UNIQUE KEY `us_email_key` (`us_email`),
