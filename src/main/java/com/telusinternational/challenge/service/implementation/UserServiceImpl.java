@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.telusinternational.challenge.components.VisitCounter;
+import com.telusinternational.challenge.constants.Consts;
 import com.telusinternational.challenge.dto.UserRegistrationDTO;
 import com.telusinternational.challenge.model.Country;
 import com.telusinternational.challenge.model.Role;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(registration.getLastName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        user.setRoles(Arrays.asList(new Role(Consts.ROLE_USER)));
         user.setCountry(country.get());
         return userRepository.save(user);
     }
