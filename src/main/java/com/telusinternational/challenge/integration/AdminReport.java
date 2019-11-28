@@ -18,7 +18,7 @@ from("quartz2://simpleTimer?cron=0+0+10+%3F+*+*")
 .setBody(simple("Report attached below."))
         .process(new AttachmentProcessor())
         .log("sending?")
-        .to("smtps://smtp.gmail.com?password=smtptest2019&username=smtp.test.2019.2@gmail.com&From=user@custom.com&To=sjdpm2@gmail.com");
+        .to("smtps://smtp.gmail.com?password=smtptest2019&username=smtp.test.2019.2@gmail.com&From=user@custom.com&To=ties_dataintegration@telusinternational.com");
 
 }
 
