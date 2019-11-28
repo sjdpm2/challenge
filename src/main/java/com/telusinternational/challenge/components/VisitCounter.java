@@ -37,10 +37,7 @@ public class VisitCounter {
 			}
 			
 			br = new BufferedReader(new FileReader("VisitCounter.txt"));
-			if(br != null)
-			{
-				System.out.println("Hola Mundo");
-			}
+
 			while((sCurrentLine = br.readLine()) != null) {
 				
 				if(lastLine.equals(sCurrentLine)) 
